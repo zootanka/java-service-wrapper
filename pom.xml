@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.zmartonos</groupId>
+	<artifactId>java-service-wrapper</artifactId>
+	<version>3.5.19-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Java Service Wrapper</name>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/deb</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>jdeb</artifactId>
+				<groupId>org.vafer</groupId>
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jdeb</goal>
+						</goals>
+						<configuration>
+							<verbose>true</verbose>
+							<controlDir>${project.build.directory}/classes/control</controlDir>
+							<dataSet>
+								<!-- <data> <src>${basedir}/src/deb/init.d</src> <type>directory</type> 
+									<mapper> <type>perm</type> <prefix>/etc/init.d</prefix> <user>loader</user> 
+									<group>loader</group> </mapper> </data> <data> <type>template</type> <paths> 
+									<path>etc/${project.artifactId}</path> <path>var/lib/${project.artifactId}</path> 
+									<path>var/log/${project.artifactId}</path> <path>var/run/${project.artifactId}</path> 
+									</paths> <mapper> <type>perm</type> <user>loader</user> <group>loader</group> 
+									</mapper> </data> -->
+
+								<data>
+									<src>${basedir}/bin</src>
+									<type>directory</type>
+									<mapper>
+										<type>perm</type>
+										<prefix>/usr/bin/${project.artifactId}</prefix>
+									</mapper>
+								</data>
+								<data>
+									<src>${basedir}/lib</src>
+									<type>directory</type>
+									<mapper>
+										<type>perm</type>
+										<prefix>/usr/lib/${project.artifactId}</prefix>
+									</mapper>
+								</data>
+
+							</dataSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
