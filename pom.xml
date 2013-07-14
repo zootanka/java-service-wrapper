@@ -36,10 +36,18 @@
 									<path>var/log/${project.artifactId}</path> <path>var/run/${project.artifactId}</path> 
 									</paths> <mapper> <type>perm</type> <user>loader</user> <group>loader</group> 
 									</mapper> </data> -->
-
 								<data>
-									<src>${basedir}/bin</src>
-									<type>directory</type>
+									<src>${basedir}/bin/wrapper</src>
+									<type>file</type>
+									<mapper>
+										<type>perm</type>
+										<filemode>655</filemode>
+										<prefix>/usr/bin/${project.artifactId}</prefix>
+									</mapper>
+								</data>
+								<data>
+									<src>${basedir}/bin/wrapper.jar</src>
+									<type>file</type>
 									<mapper>
 										<type>perm</type>
 										<prefix>/usr/bin/${project.artifactId}</prefix>
@@ -53,7 +61,6 @@
 										<prefix>/usr/lib/${project.artifactId}</prefix>
 									</mapper>
 								</data>
-
 							</dataSet>
 						</configuration>
 					</execution>
