@@ -29,13 +29,6 @@
 							<verbose>true</verbose>
 							<controlDir>${project.build.directory}/classes/control</controlDir>
 							<dataSet>
-								<!-- <data> <src>${basedir}/src/deb/init.d</src> <type>directory</type> 
-									<mapper> <type>perm</type> <prefix>/etc/init.d</prefix> <user>loader</user> 
-									<group>loader</group> </mapper> </data> <data> <type>template</type> <paths> 
-									<path>etc/${project.artifactId}</path> <path>var/lib/${project.artifactId}</path> 
-									<path>var/log/${project.artifactId}</path> <path>var/run/${project.artifactId}</path> 
-									</paths> <mapper> <type>perm</type> <user>loader</user> <group>loader</group> 
-									</mapper> </data> -->
 								<data>
 									<src>${basedir}/bin/wrapper</src>
 									<type>file</type>
